@@ -1,0 +1,15 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}حذف کتاب {{ book.title }}{% endblock page_title %}
+
+{% block content %}
+    <h1>حذف کتاب {{ book.title}}</h1>
+    <form action='' method='POST'>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <p>آیا از  حذف کتاب {{book.title}}  مطمئن هستید؟<p/>
+        <input class='btn btn-danger mt-3' type='submit' value='بله مطمئنم!' />
+    </form>
+     <a href='{% url "book_list" %}'>لیست همه کتاب ها</a>
+{% endblock content %}
