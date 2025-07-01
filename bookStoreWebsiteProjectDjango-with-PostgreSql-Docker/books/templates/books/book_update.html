@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}ویرایش کتاب {{ book.title }}{% endblock page_title %}
+
+{% block content %}
+    <h1>ویرایش کتاب {{ book.title}}</h1>
+    <form action='' method='POST'>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class='btn btn-success mt-3' type='submit'>ویرایش</button>
+    </form>
+     <a href='{% url "book_list" %}'>لیست همه کتاب ها</a>
+{% endblock content %}
