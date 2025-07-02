@@ -1,7 +1,8 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block page_title %}جزئیات کتاب {{ book.title }}{% endblock page_title %}
+{% block page_title %} {% trans "Book Detail" %} {{ book.title }}{% endblock page_title %}
 
 {% block content %}
     <div class="container mt-5" dir="rtl">
@@ -21,19 +22,19 @@
                         </div>
                         <div class="col-xs-12 col-md-6 text-center text-md-end mt-md-1 mt-4">
                             <h1>{{ book.title }}</h1>
-                            <h5 class="small my-1"><span class="text-muted">نویسنده: </span>{{ book.author }}</h5>
-                            <h5 class="small my-1"><span class="text-muted">ایجاد کننده: </span>{{ book.user.username }}</h5>
+                            <h5 class="small my-1"><span class="text-muted">{% trans "Author" %}: </span>{{ book.author }}</h5>
+                            <h5 class="small my-1"><span class="text-muted"> {% trans "Created By:" %} </span>{{ book.user.username }}</h5>
                             {% if book.user == user %}
-                                <a href='{% url "book_update" book.id %}'>ویرایش</a>
-                                <span> یا </span>
-                                <a href='{% url "book_delete" book.id %}'>حذف</a>
+                                <a href='{% url "book_update" book.id %}'>{% trans "Update" %}</a>
+                                <span> {% trans "Or" %} </span>
+                                <a href='{% url "book_delete" book.id %}'>{% trans "Delete" %}</a>
                             {% endif %}
                             {% comment %} <h5 class="small my-1"><span class="text-muted">مترجم: </span>الهام خرسندی</h5>
                             <h5 class="small my-1"><span class="text-muted">انتشارات: </span>هوزمزد</h5> {% endcomment %}
                         </div>
                         <div class="col-xs-12 col-md-3 d-flex flex-column">
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">
-                                {{ book.price }} تومان
+                                {{ book.price }} {% trans "Dollar" %}
                             </h3>
                         </div>
                     </div>
@@ -45,15 +46,15 @@
 
                 <div class="d-flex justify-content-center">
                     <div class="card shadow my-3 p-5 w-sm-75 w-100">
-                        <h2 class="mb-5">نظرات:</h2>
+                        <h2 class="mb-5">{% trans "Comments" %}:</h2>
                         {% for comment in comments %}
                             {% if comment.is_active %}
                                 <div class="border-bottom mb-3">
                                     <h5 class="mb-3">{{comment.user.username}}</h5>
                                     {% if comment.recommend %}
-                                        <p>این کتاب را توصیه میکنم</p>
+                                        <p>{% trans "I recommend this book." %}</p>
                                     {% else %}
-                                        <p>این کتاب را توصیه نمیکنم<p/>
+                                        <p>{% trans "I do not recommend this book." %}<p/>
                                     {% endif %}
                                     <p>{{ comment.text|linebreaks }}</p>
                                 </div>
@@ -64,11 +65,11 @@
 
                 <div class="d-flex justify-content-center">
                     <div class="card shadow my-3 p-5 w-sm-75 w-100">
-                        <h3>نظر خود را وارد کنید:</h3>
+                        <h3>{% trans "Enter your comment:" %}</h3>
                         <form method="POST">
                             {% csrf_token %}
                             {{ comment_form|crispy }}
-                            <button type="submit" class="btn btn-primary mt-3">ارسال</button>
+                            <button type="submit" class="btn btn-primary mt-3">{% trans "Send" %}</button>
                         </form>
                     </div>
                 </div>

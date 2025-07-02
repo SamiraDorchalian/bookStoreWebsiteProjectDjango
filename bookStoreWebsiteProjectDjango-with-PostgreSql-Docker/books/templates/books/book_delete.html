@@ -1,15 +1,20 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block page_title %}حذف کتاب {{ book.title }}{% endblock page_title %}
+{% block page_title %} {% trans "Book Delete" %} {{ book.title }}{% endblock page_title %}
 
 {% block content %}
-    <h1>حذف کتاب {{ book.title}}</h1>
-    <form action='' method='POST'>
-        {% csrf_token %}
-        {{ form|crispy }}
-        <p>آیا از  حذف کتاب {{book.title}}  مطمئن هستید؟<p/>
-        <input class='btn btn-danger mt-3' type='submit' value='بله مطمئنم!' />
-    </form>
-     <a href='{% url "book_list" %}'>لیست همه کتاب ها</a>
+<div class="d-flex justify-content-center mt-5" dir="rtl">
+    <div class="bg-white m-3 m-sm-5 border rounded px-4 pt-4 pb-3 shadow">
+            <h1>{% trans "Delete Book's" %}  {{ book.title}}</h1>
+            <form action='' method='POST'>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <p>{% trans "Are you sure you want to delete" %} {{ book.title }} {% trans "book?" %}<p/>
+                <input class='btn btn-danger mt-3' type='submit' value='{% trans "Yes I am Sure!" %}' />
+            </form>
+            <a href='{% url "book_list" %}'>{% trans "List Books" %}</a>
+        </div>
+    </div>
 {% endblock content %}
