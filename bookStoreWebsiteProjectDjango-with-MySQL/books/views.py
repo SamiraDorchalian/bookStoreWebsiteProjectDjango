@@ -19,3 +19,9 @@ class BookCreateView(generic.CreateView):
     model = Book
     fields = ['title', 'author', 'publisher', 'translator', 'description', 'price']
     template_name = 'books/book_create.html'   
+
+
+class BookUpdateView(generic.UpdateView):
+    model = Book
+    fields = ['title', 'author', 'publisher', 'translator', 'description', 'price']
+    template_name = 'books/book_update.html'
