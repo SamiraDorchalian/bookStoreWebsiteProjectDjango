@@ -24,10 +24,12 @@
                             <h5 class="small my-1"><span class="text-muted">Created By: </span>{{ book.user.username }}</h5>
                             <h5 class="small my-1"><span class="text-muted">Translator: </span>{{ book.translator }}</h5>
                             <h5 class="small my-1"><span class="text-muted">Publisher: </span>{{ book.publisher }}</h5>
-                            <div class='conatiner'>
-                                <a href='{% url "book_update" book.id %}'><button class='btn btn-info' type='button'>Update</button></a>
-                                <a href='{% url "book_delete" book.id %}'><button class='btn btn-danger' type='button'>Delete</button></a>
-                            </div>
+                            {% if book.user == user %}
+                                <div class='conatiner'>
+                                    <a href='{% url "book_update" book.id %}'><button class='btn btn-info' type='button'>Update</button></a>
+                                    <a href='{% url "book_delete" book.id %}'><button class='btn btn-danger' type='button'>Delete</button></a>
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="col-xs-12 col-md-3 d-flex flex-column">
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">
