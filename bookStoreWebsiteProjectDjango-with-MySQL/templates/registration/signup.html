@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-{% block page_title %}SignUp{% endblock page_title %}
+{% block page_title %}{{signup}}{% endblock page_title %}
 
 {% block style %}
     <link rel="stylesheet" href="{% static "css/login.css" %}">
@@ -14,15 +14,15 @@
         <div class="m-sm-5 border rounded px-4 pt-4 pb-3 shadow">
             <form method="post">
                 {% csrf_token %}
-                <h1 class="text-center">SignUp</h1>
+                <h1 class="text-center">{{signup}}</h1>
                 {{ form|crispy }}
-                <button type="submit" class="btn btn-success mt-3 w-100">Signup</button>
+                <button type="submit" class="btn btn-success mt-3 w-100">{{signup}}</button>
                 <div class="line-with-middle-sep">
                     <span>
-                        Or
+                        {{or}}
                     </span>
                 </div>
-                <a href="{% url "login" %}" class="btn btn-primary mt-2 mb-3 w-100">Login</a>
+                <a href="{% url "login" %}" class="btn btn-primary mt-2 mb-3 w-100">{{login}}</a>
             </form>
         </div>
     </div>

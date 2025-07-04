@@ -1,7 +1,8 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block page_title %}Book Detail {{ book.title }}{% endblock page_title %}
+{% block page_title %}{% trans "Book Detail" %} {{ book.title }}{% endblock page_title %}
 
 {% block content %}
     <div class="container mt-5" dir="rtl">
@@ -20,20 +21,20 @@
                         </div>
                         <div class="col-xs-12 col-md-6 text-center text-md-end mt-md-1 mt-4">
                             <h1>{{ book.title }}</h1>
-                            <h5 class="small my-1"><span class="text-muted">Author: </span>{{ book.author }}</h5>
-                            <h5 class="small my-1"><span class="text-muted">Created By: </span>{{ book.user.username }}</h5>
-                            <h5 class="small my-1"><span class="text-muted">Translator: </span>{{ book.translator }}</h5>
-                            <h5 class="small my-1"><span class="text-muted">Publisher: </span>{{ book.publisher }}</h5>
+                            <h5 class="small my-1"><span class="text-muted">{% trans "Author:" %} </span>{{ book.author }}</h5>
+                            <h5 class="small my-1"><span class="text-muted">{% trans "Created By:" %} </span>{{ book.user.username }}</h5>
+                            <h5 class="small my-1"><span class="text-muted">{% trans "Translator:" %} </span>{{ book.translator }}</h5>
+                            <h5 class="small my-1"><span class="text-muted">{% trans "Publisher:" %} </span>{{ book.publisher }}</h5>
                             {% if book.user == user %}
                                 <div class='conatiner'>
-                                    <a href='{% url "book_update" book.id %}'><button class='btn btn-info' type='button'>Update</button></a>
-                                    <a href='{% url "book_delete" book.id %}'><button class='btn btn-danger' type='button'>Delete</button></a>
+                                    <a href='{% url "book_update" book.id %}'><button class='btn btn-info' type='button'>{% trans "Update" %}</button></a>
+                                    <a href='{% url "book_delete" book.id %}'><button class='btn btn-danger' type='button'>{% trans "Delete" %}</button></a>
                                 </div>
                             {% endif %}
                         </div>
                         <div class="col-xs-12 col-md-3 d-flex flex-column">
                             <h3 class="align-self-center pt-2 text-muted align-self-md-end">
-                                {{ book.price }} Dollar
+                                {{ book.price }} {% trans "Dollar" %}
                             </h3>
                         </div>
                     </div>
@@ -45,15 +46,15 @@
 
                 <div class="d-flex justify-content-center">
                     <div class="card shadow my-3 p-5 w-sm-75 w-100">
-                        <h2 class="mb-5">Comments:</h2>
+                        <h2 class="mb-5">{% trans "Comments:" %}</h2>
                         {% for comment in comments %}
                             {% if comment.is_active %}
                                 <div class="border-bottom mb-3">
                                     <h5 class="mb-3">{{ comment.user.username }}</h5>
                                     {% if comment.recommend %}
-                                        <p>Recommend This Book</p>
+                                        <p>{% trans "Recommend This Book" %}</p>
                                     {% else %}
-                                        <p>Don't Recommend This Book</p>
+                                        <p>{% trans "Don't Recommend This Book" %}</p>
                                     {% endif %}
                                     <p>{{ comment.text|linebreaks }}</p>
                                 </div>
@@ -64,11 +65,11 @@
 
                 <div class="d-flex justify-content-center">
                     <div class="card shadow my-3 p-5 w-sm-75 w-100">
-                        <h3>Enter Your Comment:</h3>
+                        <h3>{% trans "Enter Your Comment:" %}</h3>
                         <form method="POST">
                             {% csrf_token %}
                             {{ comment_form|crispy }}
-                            <button type="submit" class="btn btn-primary mt-3">Send</button>
+                            <button type="submit" class="btn btn-primary mt-3">{% trans "Send" %}</button>
                         </form>
                     </div>
                 </div>

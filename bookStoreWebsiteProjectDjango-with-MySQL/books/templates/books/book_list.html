@@ -1,6 +1,7 @@
 {% extends "_base.html" %}
+{% load i18n %}
 
-{% block page_title %}Book List{% endblock page_title %}
+{% block page_title %}{% trans "Book List" %}{% endblock page_title %}
 
 {% block content %}
     <div class="container mt-4">
@@ -20,9 +21,9 @@
                                 <div class="card-body">
                                     <a class='text-decoration-none' href='{{ book.get_absolute_url }}'><h3 class="card-title"><strong>{{ book.title }}</strong></h3></a>
                                     <p class="card-text pt-3">{{ book.description|truncatewords:25 }}</p>
-                                    <p class="text-muted">Author: {{ book.author }}</p>
-                                    <p class="text-muted">Publisher: {{ book.publisher }}</p>
-                                    <p class="text-muted">Translator: {{ book.translator }}</p>
+                                    <p class="text-muted">{% trans "Author:" %} {{ book.author }}</p>
+                                    <p class="text-muted">{% trans "Publisher:" %} {{ book.publisher }}</p>
+                                    <p class="text-muted">{% trans "Translator:" %} {{ book.translator }}</p>
                                 </div>
                             </div>
                         </div>
@@ -35,13 +36,13 @@
         <ul class="pagination justify-content-center mt-3">
             {% if page_obj.has_previous %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
                 </li>
             {% endif %}
             <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
             {% if page_obj.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
                 </li>
             {% endif %}
         </ul>

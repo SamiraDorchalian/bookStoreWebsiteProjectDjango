@@ -1,28 +1,29 @@
 {% extends "_base.html" %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 
-{% block page_title %}Book Create{% endblock page_title %}
+{% block page_title %}{% trans "Book Create" %}{% endblock page_title %}
 
 {% block content %}
     <div class="container mt-4" dir="rtl">
         <div class="row">
             <div class="col-9">
                 <div class="card shadow my-3">
-                    <h5 class="card-header bg-success text-light px-5">Form</h5>
+                    <h5 class="card-header bg-success text-light px-5">{% trans "Form" %}</h5>
                     <div class="px-5 pt-3 pb-5">
                         <form method="POST" enctype='multipart/form-data'>
                             {% csrf_token %}
                             {{ form|crispy }}
-                            <button type="submit" class="btn btn-success mt-2">Save</button>
+                            <button type="submit" class="btn btn-success mt-2">{% trans "Save" %}</button>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col-3">
                 <div class="card my-3 shadow">
-                    <h5 class="card-header bg-warning text-light">Guide</h5>
+                    <h5 class="card-header bg-warning text-light">{% trans "Guide" %}</h5>
                     <div class="card-body">
-                        <p class="card-text">Enter the book information in the form on this page and then click the Save button.</p>
+                        <p class="card-text">{% trans "Enter the book information in the form on this page and then click the Save button." %}</p>
                     </div>
                 </div>
             </div>

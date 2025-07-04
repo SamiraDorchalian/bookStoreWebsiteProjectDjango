@@ -2,8 +2,9 @@
 
 {% load crispy_forms_tags %}
 {% load static %}
+{% load i18n %}
 
-{% block page_title %}Login{% endblock page_title %}
+{% block page_title %}{{login}}{% endblock page_title %}
 
 {% block style %}
     <link rel="stylesheet" href="{% static "css/login.css" %}">
@@ -14,20 +15,20 @@
         <div class="col-xl-3 col-lg-4 col-md-5 col-sm-5 col-xs-6 bg-white m-3 m-sm-5 border rounded px-4 pt-4 pb-3 shadow">
             <form method="post">
                 {% csrf_token %}
-                <h1 class="text-center">Login</h1>
+                <h1 class="text-center">{{login}}</h1>
                 {{ form|crispy }}
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="mt-2">
-                        <a class="text-decoration-none" href="{% url "password_reset" %}">Forgot Your Password</a>
+                        <a class="text-decoration-none" href="{% url "password_reset" %}">{{FotgotYourPassword}}</a>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success mt-3 w-100">Login</button>
+                <button type="submit" class="btn btn-success mt-3 w-100">{{login}}</button>
                 <div class="line-with-middle-sep">
                     <span>
-                        Or
+                        {{or}}
                     </span>
                 </div>
-                <a href="{% url "signup" %}" class="btn btn-primary mt-2 mb-3 w-100">SignUp</a>
+                <a href="{% url "signup" %}" class="btn btn-primary mt-2 mb-3 w-100">{{signup}}</a>
             </form>
         </div>
     </div>
